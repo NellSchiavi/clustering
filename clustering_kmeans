@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 import time
+from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
 
 #gera um valor aleatorio para geração sem subescrever a imagem
 timestamp = int(time.time())
@@ -28,3 +29,10 @@ centers = kmeans.cluster_centers_
 plt.scatter(centers[:, 0], centers[:, 1], c='red', s=200, alpha=0.75, marker='X')
 plt.title('Clusters Encontrados pelo K-Means')
 plt.savefig(f"clusters_encontrados_{timestamp}.png")  # Salva o gráfico como imagem
+
+
+#print das informações relevantes do clustering
+print("Inertia:", kmeans.inertia_)
+print("Silhouette Score:", silhouette_score(X, y_kmeans))
+print("Davies-Bouldin Index:", davies_bouldin_score(X, y_kmeans))
+print("Calinski-Harabasz Index:", calinski_harabasz_score(X, y_kmeans))
