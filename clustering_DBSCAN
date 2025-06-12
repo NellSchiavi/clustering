@@ -1,0 +1,16 @@
+from sklearn.cluster import DBSCAN
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Exemplo simples com dados gerados
+from sklearn.datasets import make_moons
+X, _ = make_moons(n_samples=300, noise=0.05)
+
+# Aplicando DBSCAN
+dbscan = DBSCAN(eps=0.2, min_samples=5)
+labels = dbscan.fit_predict(X)
+
+# Visualizando
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='plasma')
+plt.title('Clusters com DBSCAN')
+plt.show()
